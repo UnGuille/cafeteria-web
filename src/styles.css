@@ -1,0 +1,106 @@
+      html {
+          scroll-behavior: smooth;
+      }
+
+      .slider .indicators .indicator-item.active {
+          background-color: #6f4037;
+      }
+
+      .move {
+          margin-top: 60px;
+          margin-bottom: 20px;
+          font-family: 'Bree Serif', serif;
+      }
+
+      .parallax-container {
+          min-height: 280px;
+          height: auto;
+      }
+
+      .brand-logo {
+          font-family: 'Bree Serif', serif;
+          font-size: 3rem !important;
+      }
+
+      #nav-mobile {
+          font-family: 'Bree Serif', serif;
+          font-size: 2rem !important;
+      }
+
+      .sidenav {
+          font-family: 'Bree Serif', serif;
+          font-size: 2rem !important;
+      }
+
+      .slider h3 {
+          font-family: 'Pacifico', cursive;
+
+      }
+
+      .slider h5 {
+          font-family: 'Bree Serif', serif;
+      }
+
+      .header {
+          font-family: 'Pacifico', cursive;
+      }
+
+      .card-title {
+          font-family: 'Bree Serif', serif;
+      }
+
+      .card-reveal p {
+          font-family: 'Pacifico', cursive;
+      }
+
+      #aboutus p {
+          font-family: 'Bree Serif', serif;
+      }
+
+      .carousel-item p {
+          font-family: 'Bree Serif', serif;
+      }
+
+      .carousel-item span {
+          font-family: 'Pacifico', cursive;
+      }
+
+      footer h4 {
+          font-family: 'Bree Serif', serif;
+      }
+
+      footer p {
+          font-family: 'Pacifico', cursive;
+      }
+
+      footer li {
+          font-family: 'Pacifico', cursive;
+      }
+
+      /* src/styles.css o app.component.css */
+
+      html,
+      body {
+          height: 100%;
+          /* El html y el body ocupan el 100% de la altura de la ventana */
+          margin: 0;
+          padding: 0;
+          display: flex;
+          /* Habilitar Flexbox */
+          flex-direction: column;
+          /* Apilar los hijos verticalmente */
+      }
+
+      main {
+          flex: 1;
+          /* Permite que la etiqueta main (que contiene el router-outlet) crezca y ocupe todo el espacio disponible */
+          display: flex;
+          /* Asegura que el contenido dentro de main también sea flexible si es necesario */
+          flex-direction: column;
+      }
+
+      /* Opcional: Asegurar que el contenido dentro de router-outlet también se estire si es necesario */
+      router-outlet+* {
+          flex: 1;
+          /* Para los componentes que se cargan a través del router-outlet */
+      }

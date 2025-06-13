@@ -1,0 +1,87 @@
+<div class="navbar-fixed">
+  <nav class="brown darken-2">
+    <div class="nav-wrapper container">
+      <a routerLink="/" class="brand-logo" style="display: flex; align-items: center;">
+        NoSQLatte Bar </a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a routerLink="/"><i class="material-icons left">home</i>Home</a></li>
+
+        <li *ngIf="!currentUser"><a routerLink="/login"><i class="material-icons left">login</i>Login</a></li>
+        <li *ngIf="!currentUser"><a routerLink="/register"><i class="material-icons left">person_add</i>Registrarse</a>
+        </li>
+        <li *ngIf="currentUser"><a routerLink="/registrar-pedido"><i
+              class="material-icons left">add_shopping_cart</i>Pedidos</a></li>
+
+        <li *ngIf="currentUser && (currentUser.rol === 'admin' || currentUser.rol === 'empleado')"><a
+            routerLink="/reportes"><i class="material-icons left">assessment</i>Reportes</a></li>
+
+        <li *ngIf="currentUser && currentUser.rol === 'admin'">
+          <a routerLink="/admin/productos" (click)="closeSidenav()"><i
+              class="material-icons left">inventory</i>Productos</a>
+        </li>
+
+        <li *ngIf="currentUser && currentUser.rol === 'admin'">
+          <a routerLink="/admin/usuarios" (click)="closeSidenav()"><i class="material-icons left">group</i>Gestión
+            Usuarios</a>
+        </li>
+
+        <li *ngIf="currentUser">
+          <a (click)="logout()" style="cursor: pointer;">
+            <i class="material-icons left">logout</i>Logout ({{ currentUser.username }})
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><a routerLink="/" (click)="closeSidenav()"><i class="material-icons left">home</i>Home</a></li>
+
+  <ng-container *ngIf="!currentUser">
+    <li><a routerLink="/login" (click)="closeSidenav()"><i class="material-icons left">login</i>Login</a></li>
+    <li><a routerLink="/register" (click)="closeSidenav()"><i class="material-icons left">person_add</i>Registrarse</a>
+    </li>
+  </ng-container>
+
+  <ng-container *ngIf="currentUser">
+    <li><a routerLink="/registrar-pedido" (click)="closeSidenav()"><i
+          class="material-icons left">add_shopping_cart</i>Pedidos</a></li>
+    <li *ngIf="currentUser.rol === 'empleado' || currentUser.rol === 'admin'"><a routerLink="/reportes"
+        (click)="closeSidenav()"><i class="material-icons left">assessment</i>Reportes</a></li>
+    <li><a (click)="logout(); closeSidenav()" style="cursor: pointer;"><i
+          class="material-icons left">logout</i>Logout</a></li>
+  </ng-container>
+</ul>
+
+<main class="container"
+  style="margin-top: 20px; margin-bottom: 20px; min-height: calc(100vh - 128px); display: flex; flex-direction: column;">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="brown darken-3 page-footer" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">NoSQLatte Bar</h5>
+        <p class="grey-text text-lighten-4">Proyecto Final ISC - UAA.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Navegación</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" routerLink="/"><i class="material-icons left">home</i>Home</a></li>
+          <li><a class="grey-text text-lighten-3" routerLink="/registrar-pedido"><i
+                class="material-icons left">add_shopping_cart</i>Pedidos</a></li>
+          <li><a class="grey-text text-lighten-3" routerLink="/reportes"><i
+                class="material-icons left">assessment</i>Reportes</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2025 Equipo #2
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,79 @@
+/* src/app/app.component.css */
+
+/* Estilos globales y del layout principal (Navbar, Sidenav, Footer) */
+
+/* Ajustes para el logo en el navbar */
+.brand-logo {
+    font-family: 'Bree Serif', serif;
+    font-size: 1.8rem !important;
+    /* Tamaño por defecto para desktop, un poco más pequeño */
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo .material-icons {
+    margin-right: 5px;
+    /* Espacio entre el ícono y el texto del logo */
+}
+
+/* Ajustes para los ítems del menú en el navbar (desktop) */
+#nav-mobile a {
+    font-family: 'Bree Serif', serif;
+    font-size: 0.9rem !important;
+    /* Tamaño por defecto para desktop */
+    padding: 0 10px;
+    /* Reducir padding horizontal */
+}
+
+/* Ajustes para los ítems del menú en el sidenav (móvil) */
+.sidenav li>a {
+    font-family: 'Bree Serif', serif;
+    font-size: 1.5rem !important;
+    /* Tamaño en móvil, sigue siendo grande pero no tanto */
+    height: 64px;
+    /* Altura estándar de Materialize para ítems de sidenav */
+    line-height: 64px;
+    /* Centra el texto verticalmente */
+    padding: 0 16px;
+    /* Padding estándar */
+}
+
+.sidenav li>a i {
+    margin-right: 15px;
+    /* Espacio entre ícono y texto en sidenav */
+}
+
+
+/* MEDIA QUERIES para pantallas más pequeñas */
+@media only screen and (max-width: 992px) {
+    /* Materialize desktop breakpoint (large devices) */
+    /* El navbar se colapsa, no hay #nav-mobile visible en desktop */
+    /* Los estilos de sidenav ya son para móvil */
+}
+
+@media only screen and (max-width: 600px) {
+
+    /* Materialize tablet/mobile breakpoint (medium/small devices) */
+    /* Ajustes para pantallas más pequeñas (móviles) */
+    .brand-logo {
+        font-size: 1.5rem !important;
+        /* Título del logo más pequeño en móvil */
+    }
+
+    /* Si el footer se amontona en móviles */
+    footer .container .row .col {
+        padding: 0 0.5rem !important;
+        /* Reducir padding de columnas en footer */
+    }
+
+    footer h5 {
+        font-size: 1.2rem !important;
+        /* Títulos de footer más pequeños */
+    }
+
+    footer p,
+    footer li a {
+        font-size: 0.85rem !important;
+        /* Texto de footer más pequeño */
+    }
+}

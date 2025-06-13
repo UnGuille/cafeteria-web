@@ -1,0 +1,24 @@
+/* src/app/components/login/login.component.css */
+
+/* Hace que este div sea un contenedor flex que se estire */
+.login-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    /* Esto es clave para que se estire y empuje el footer */
+    min-height: 100%;
+    /* Opcional, asegura que ocupe al menos 100% de la altura disponible */
+    justify-content: center;
+    /* Centra el contenido verticalmente si hay espacio extra */
+    align-items: center;
+    /* Centra el contenido horizontalmente si hay espacio extra */
+}
+
+/* Puedes añadir más estilos para tu card de login si lo deseas */
+.card {
+    /* Por ejemplo: */
+    width: 100%;
+    /* Asegura que la tarjeta ocupe el ancho de la columna */
+    max-width: 400px;
+    /* Limita el ancho máximo del formulario */
+}

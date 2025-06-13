@@ -1,0 +1,551 @@
+/* Colores de la paleta (nombres para referencia) */
+:root {
+    --primary-neon-blue: #00FFFF;
+    /* Aqua vibrante */
+    --secondary-electric-purple: #EE82EE;
+    /* Violeta eléctrico */
+    --accent-vibrant-orange: #FF4500;
+    /* Naranja rojizo */
+    --dark-background: #1a1a2e;
+    /* Azul oscuro casi negro */
+    --medium-dark-background: #5d4037;
+    /* Azul más claro para cards */
+    --light-text: #E0E0E0;
+    /* Gris claro para texto */
+    --border-glow: rgba(0, 255, 255, 0.5);
+    /* Resplandor azul */
+    --shadow-deep: rgba(0, 0, 0, 0.4);
+}
+
+body {
+    background: linear-gradient(135deg, var(--dark-background) 0%, #000000 100%);
+    color: var(--light-text);
+    margin: 0;
+    padding: 20px 0;
+    min-height: 100vh;
+    /* Asegura que el gradiente ocupe toda la altura */
+    display: flex;
+    justify-content: center;
+    /* Centra el contenido horizontalmente */
+    align-items: flex-start;
+    /* Alinea el contenido al inicio verticalmente */
+}
+
+.container {
+    max-width: 1200px;
+    /* Limita el ancho del contenido principal */
+    width: 95%;
+    /* Asegura que no se pegue a los bordes en pantallas pequeñas */
+    background: var(--dark-background);
+    /* Fondo para el contenedor principal */
+    border-radius: 20px;
+    box-shadow: 0 15px 30px var(--shadow-deep);
+    padding: 30px;
+    animation: fadeInScale 0.8s ease-out forwards;
+    /* Efecto de entrada */
+    opacity: 0;
+    /* Inicialmente invisible */
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.header {
+    /* Fuente tecnológica para el título */
+    color: var(--primary-neon-blue);
+    text-shadow: 0 0 15px var(--primary-neon-blue), 0 0 20px var(--secondary-electric-purple);
+    /* Efecto neón */
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-align: center;
+    /* Centrado para el título */
+    position: relative;
+    padding-bottom: 15px;
+    /* Espacio para el borde inferior animado */
+}
+
+.header::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary-neon-blue), transparent);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: drawLine 2s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes drawLine {
+    to {
+        width: 80%;
+    }
+}
+
+.header img {
+    filter: drop-shadow(0 0 8px var(--primary-neon-blue));
+    /* Resplandor a la imagen */
+    transition: transform 0.3s ease-in-out;
+}
+
+.header img:hover {
+    transform: rotate(10deg) scale(1.1);
+    /* Efecto hover */
+}
+
+/* Card General y Efectos */
+.card {
+    background-color: var(--medium-dark-background);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Transición suave para hover */
+    box-shadow: 0 5px 15px var(--shadow-deep);
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    /* Borde sutil */
+    position: relative;
+    z-index: 1;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: -1;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.01);
+    /* Elevación y ligera escala */
+    box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+    /* Sombra con resplandor */
+    border-color: var(--primary-neon-blue);
+    /* Borde que resplandece */
+}
+
+.card-content {
+    padding: 25px;
+    color: var(--light-text);
+}
+
+.card-content h5 {
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.card-content p {
+    color: var(--light-text);
+    opacity: 0.8;
+}
+
+/* Colores para las estadísticas */
+.blue-text {
+    color: var(--primary-neon-blue) !important;
+}
+
+.green-text {
+    color: #00FF00 !important;
+    /* Verde neón */
+}
+
+.orange-text {
+    color: var(--accent-vibrant-orange) !important;
+}
+
+/* Estilo para las gráficas */
+canvas {
+    background-color: rgba(255, 255, 255, 0.02);
+    /* Fondo muy sutil para gráficas */
+    border-radius: 8px;
+    box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1);
+    padding: 10px;
+}
+
+/* Barras de progreso */
+.progress {
+    background-color: rgba(255, 255, 255, 0.1);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    /* Para el efecto de la barra interna */
+    margin-top: 30px !important;
+}
+
+.progress .indeterminate {
+    background-color: linear-gradient(90deg, var(--primary-neon-blue), var(--secondary-electric-purple));
+}
+
+/* Mensajes de error y de información */
+.card-panel.red.lighten-4 {
+    background-color: #FF5252 !important;
+    /* Rojo más llamativo */
+    color: white !important;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+    border-left: 5px solid var(--accent-vibrant-orange);
+}
+
+.card-panel.teal.lighten-5 {
+    background-color: #4CAF50 !important;
+    /* Verde vibrante */
+    color: white !important;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 255, 0, 0.3);
+    border-left: 5px solid var(--primary-neon-blue);
+}
+
+/* Select de sucursales */
+.input-field select {
+    background-color: var(--medium-dark-background) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--light-text) !important;
+    padding: 8px 10px;
+    /* Ajusta el padding */
+    height: auto;
+    /* Permite que Materialize ajuste la altura */
+    display: block;
+    /* Para control de ancho */
+    width: 100%;
+
+}
+
+.input-fieldd select {
+    background-color: var(--medium-dark-background) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: var(--light-text) !important;
+    padding: 8px 10px;
+    height: auto;
+    display: block;
+    width: 100%;
+
+    text-shadow: 1px 1px 2px black;
+    /* Agrega la sombra negra al texto */
+}
+
+
+.input-field label {
+    color: var(--primary-neon-blue) !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.input-field label.active {
+    color: var(--secondary-electric-purple) !important;
+    transform: translateY(-14px) scale(0.8);
+    /* Ajuste para etiquetas flotantes */
+}
+
+/* Materialize custom select dropdown (ul.dropdown-content) */
+.dropdown-content li>a,
+.dropdown-content li>span {
+    color: var(--light-text) !important;
+    /* Texto de las opciones */
+    background-color: var(--medium-dark-background) !important;
+    /* Fondo de las opciones */
+}
+
+.dropdown-content li.selected,
+.dropdown-content li.active {
+    background-color: var(--primary-neon-blue) !important;
+    /* Opción seleccionada */
+    color: var(--dark-background) !important;
+    /* Texto de opción seleccionada */
+}
+
+.dropdown-content li>a:hover,
+.dropdown-content li>span:hover {
+    background-color: var(--secondary-electric-purple) !important;
+    /* Hover en opciones */
+    color: var(--light-text) !important;
+}
+
+/* Barra de Filtros Compacta */
+.card-panel.grey.lighten-4 {
+    /* Reutiliza la clase existente */
+    background: linear-gradient(90deg, #5d4037, #7c5d53);
+    /* Degradado horizontal */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.301);
+    border: 1px solid rgba(255, 255, 255, 0.74);
+    padding: 15px 20px !important;
+    /* Ajusta padding */
+    display: flex;
+    /* Usar flexbox para centrado */
+    align-items: center;
+    /* Alinear verticalmente */
+    justify-content: space-between;
+    /* Espaciar elementos */
+    flex-wrap: wrap;
+    /* Permitir que los elementos se envuelvan en pantallas pequeñas */
+}
+
+.card-panel.grey.lighten-4 .row {
+    margin-bottom: 0 !important;
+    /* Eliminar margen inferior de fila interna */
+    width: 100%;
+    /* Asegurar que la fila ocupe todo el ancho del panel */
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card-panel.grey.lighten-4 .col {
+    margin-top: 0 !important;
+    margin-bottom: 10px;
+    /* Pequeño margen inferior para espaciar en wrap */
+}
+
+.card-panel.grey.lighten-4 p {
+    color: var(--primary-neon-blue);
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
+}
+
+/* Estilos específicos para los campos de filtro dentro de la barra */
+.card-panel.grey.lighten-4 .input-field {
+    margin-bottom: 0 !important;
+    /* Eliminar margen inferior predeterminado */
+    margin-top: 0 !important;
+}
+
+.card-panel.grey.lighten-4 .input-field input[type="text"],
+.card-panel.grey.lighten-4 .input-field select {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.623);
+    box-shadow: none;
+    /* Eliminar sombra predeterminada */
+    color: var(--light-text);
+    padding: 5px 0;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: transparent;
+    /* Fondo transparente */
+}
+
+.card-panel.grey.lighten-4 .input-field input[type="text"]:focus,
+.card-panel.grey.lighten-4 .input-field select:focus {
+    border-bottom: 1px solid var(--primary-neon-blue);
+    box-shadow: 0 1px 0 0 var(--primary-neon-blue);
+    /* Sombra enfocada */
+}
+
+.card-panel.grey.lighten-4 .input-field label {
+    color: rgba(255, 255, 255, 0.6) !important;
+    /* Color más sutil para labels */
+    font-size: 0.9em;
+    left: 0.75rem;
+    /* Ajuste para el padding */
+}
+
+.card-panel.grey.lighten-4 .input-field label.active {
+    color: var(--primary-neon-blue) !important;
+    font-weight: 600;
+    transform: translateY(-12px) scale(0.75);
+    /* Ajuste para labels flotantes */
+}
+
+/* Botón de restablecer filtros */
+.card-panel.grey.lighten-4 .btn-flat {
+    color: var(--accent-vibrant-orange) !important;
+    /* Color del ícono */
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    /* Hacerlo circular */
+    width: 36px;
+    /* Ancho igual a la altura */
+    height: 36px;
+    /* Altura del icono */
+    line-height: 36px;
+    text-align: center;
+    padding: 0;
+    /* Eliminar padding extra */
+}
+
+.card-panel.grey.lighten-4 .btn-flat:hover {
+    background-color: rgba(255, 69, 0, 0.2) !important;
+    /* Fondo sutil al pasar el mouse */
+    box-shadow: 0 0 10px var(--accent-vibrant-orange);
+    /* Resplandor */
+    transform: rotate(90deg);
+    /* Efecto de rotación al pasar el mouse */
+}
+
+
+/* Tabla de pedidos */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background-color: var(--medium-dark-background);
+    border-radius: 12px;
+    overflow: hidden;
+    /* Para las esquinas redondeadas */
+    box-shadow: 0 8px 20px var(--shadow-deep);
+    animation: slideInUp 1s ease-out forwards;
+    /* Animación de entrada de tabla */
+    opacity: 0;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+table thead {
+    background: linear-gradient(90deg, var(--primary-neon-blue), var(--secondary-electric-purple));
+    color: var(--dark-background);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+table th,
+table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+table tbody tr {
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+    /* Rayas sutiles */
+}
+
+table tbody tr:hover {
+    background-color: rgba(0, 255, 255, 0.1);
+    /* Resplandor al pasar el mouse */
+    transform: scale(1.005);
+}
+
+table td {
+    color: var(--light-text);
+}
+
+/* Mensajes de "No hay pedidos" */
+.card-panel.blue-grey.lighten-5 {
+    background-color: rgba(0, 255, 255, 0.1) !important;
+    /* Fondo translúcido */
+    color: var(--primary-neon-blue) !important;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    padding: 20px;
+    border: 1px solid var(--primary-neon-blue);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+/* Ajustes para responsividad */
+@media (max-width: 992px) {
+    .container {
+        padding: 20px;
+    }
+
+    .header {
+        font-size: 2em;
+    }
+
+    .col.s12.m4 {
+        margin-top: 15px !important;
+    }
+
+    .card-panel.grey.lighten-4 .col.s12.m2 {
+        flex-basis: 50%;
+        /* Dos columnas por fila en dispositivos medianos */
+        max-width: 50%;
+    }
+
+    .card-panel.grey.lighten-4 .col.s12.m2:nth-child(odd) {
+        padding-right: 10px;
+    }
+
+    .card-panel.grey.lighten-4 .col.s12.m2:nth-child(even) {
+        padding-left: 10px;
+    }
+
+    .card-panel.grey.lighten-4 .col.s12.m2:last-child {
+        flex-basis: 100%;
+        max-width: 100%;
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .header {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+
+    .card-panel.grey.lighten-4 .col.s12.m2 {
+        flex-basis: 100%;
+        /* Una columna por fila en dispositivos pequeños */
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .card-panel.grey.lighten-4 .input-field input[type="text"],
+    .card-panel.grey.lighten-4 .input-field select {
+        font-size: 1em;
+    }
+
+    table th,
+    table td {
+        padding: 10px 15px;
+        font-size: 0.85em;
+    }
+}
+
+/* Ocultar elementos de Materialize para que nuestro diseño predomine si es necesario */
+/* Esto puede requerir ajustes finos dependiendo de si usas el CSS de Materialize en todo tu proyecto */
+.select-wrapper span.caret {
+    color: var(--primary-neon-blue) !important;
+}
+
+.select-wrapper input.select-dropdown {
+    color: var(--light-text) !important;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3) !important;
+}
+
+.select-wrapper input.select-dropdown:focus {
+    border-bottom: 1px solid var(--primary-neon-blue) !important;
+    box-shadow: 0 1px 0 0 var(--primary-neon-blue) !important;
+}

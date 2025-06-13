@@ -1,0 +1,298 @@
+/* src/app/components/home/home.component.css */
+/* ... (tus estilos previos para product-card si los tenías aquí) ... */
+
+.slider .caption h2,
+.slider .caption h3 {
+    /* Para que el texto del slider sea más grande */
+    font-size: 3.5rem !important;
+    margin-bottom: 10px;
+}
+
+.slider .caption h5 {
+    font-size: 1.8rem !important;
+}
+
+@media (max-width: 600px) {
+
+    .slider .caption h2,
+    .slider .caption h3 {
+        font-size: 2.5rem !important;
+    }
+
+    .slider .caption h5 {
+        font-size: 1.3rem !important;
+    }
+}
+
+.section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+/* Animación para el botón principal del slider */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(93, 64, 55, 0.7);
+        /* brown darken-1 */
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(93, 64, 55, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(93, 64, 55, 0);
+    }
+}
+
+.slider .btn-large.hoverable {
+    animation: pulse 2s infinite;
+}
+
+/* Estilos para las tarjetas de productos destacados */
+.product-card-container {
+    padding: 0.75rem;
+    display: flex;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Todas las tarjetas misma altura */
+    transition: box-shadow .25s;
+}
+
+.product-card:hover {
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.product-card .card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Para distribuir el contenido y el precio/botón */
+}
+
+.product-card .card-content .card-title {
+    line-height: 1.3em;
+    /* Evita que el título ocupe demasiado espacio */
+    height: 2.6em;
+    /* Espacio para dos líneas de título aprox. */
+    overflow: hidden;
+}
+
+.product-card .card-content p.truncate {
+    /* Para la descripción */
+    min-height: 3em;
+    /* Espacio para aprox. 2 líneas de descripción */
+    max-height: 3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Limita a 2 líneas */
+    -webkit-box-orient: vertical;
+}
+
+
+.image-placeholder {
+    width: 100%;
+    padding-top: 75%;
+    /* 4:3 aspect ratio */
+    position: relative;
+    overflow: hidden;
+    background-color: #eee;
+}
+
+.image-placeholder img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Estilos para carrusel de testimonios */
+.carousel.carousel-slider .carousel-item h4 {
+    font-size: 1.8rem;
+    /* Ajusta según sea necesario */
+    line-height: 1.3;
+    margin-bottom: 15px;
+}
+
+.carousel.carousel-slider .carousel-item p {
+    font-size: 1.1rem;
+}
+
+/* src/app/components/home/home.component.css */
+.image-placeholder {
+    width: 100%;
+    padding-top: 75%;
+    /* Relación de aspecto 4:3. Para 16:9 sería 56.25%. Para 3:2 sería 66.66% */
+    position: relative;
+    overflow: hidden;
+    background-color: #e0e0e0;
+    /* Placeholder color */
+}
+
+.image-placeholder img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 'cover' llena el espacio, puede cortar. 'contain' muestra toda la imagen, puede dejar espacios. */
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-card .card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card .card-action {
+    margin-top: auto;
+    /* Empuja el botón de acción hacia abajo */
+}
+
+/* En home.component.css */
+.image-placeholder {
+    width: 100%;
+    padding-top: 75%;
+    /* 4:3 aspect ratio. Para 300/400 sería 75%. Para 200/300 (como en tu placeholder URL) sería 66.66% */
+    position: relative;
+    overflow: hidden;
+    background-color: #e0e0e0;
+    /* Gris claro para placeholder */
+    border-radius: 4px 4px 0 0;
+    /* Si quieres esquinas redondeadas arriba */
+}
+
+.image-placeholder img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Cubre el área sin distorsionar, puede cortar un poco */
+}
+
+.product-grid {
+    /* Añade esta clase al div.row que contiene los *ngFor de productos si no la tienes */
+    display: flex;
+    flex-wrap: wrap;
+    /* Ajustes para compensar el margin negativo de .row de Materialize si es necesario */
+    /* margin-left: -0.75rem; */
+    /* margin-right: -0.75rem; */
+}
+
+.product-card-container {
+    padding-left: 0.75rem;
+    /* Estándar de Materialize para .col */
+    padding-right: 0.75rem;
+    margin-bottom: 1.5rem;
+    /* Espacio vertical entre tarjetas */
+    display: flex;
+    /* Para que las tarjetas hijas (product-card) puedan usar height: 100% */
+    flex-direction: column;
+    /* Aunque el hijo directo es la tarjeta, esto no daña */
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    /* Apila card-image, card-content, card-action verticalmente */
+    height: 100%;
+    /* ¡CLAVE! Hace que todas las tarjetas en una "fila" flex tengan la misma altura */
+    background-color: #fff;
+    border-radius: 4px;
+    /* Opcional: para bordes redondeados */
+}
+
+.product-card .card-content {
+    flex-grow: 1;
+    /* Permite que el contenido de la tarjeta se expanda para llenar el espacio vertical */
+    display: flex;
+    flex-direction: column;
+    /* Organiza los elementos dentro de card-content verticalmente */
+    padding: 16px;
+    /* Ajusta el padding si es necesario */
+}
+
+.product-card .card-content .card-title {
+    line-height: 1.3em;
+    /* Opcional: Limitar altura del título si son muy largos */
+    /* max-height: 2.6em; /* Aprox 2 líneas */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    /* display: -webkit-box; */
+    /* -webkit-line-clamp: 2; */
+    /* -webkit-box-orient: vertical; */
+}
+
+.product-card .card-content p.truncate {
+    min-height: 2.4em;
+    /* Espacio para aprox. 2 líneas de descripción */
+    max-height: 2.4em;
+    /* Limita a 2 líneas */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: auto;
+    /* Empuja el precio hacia abajo si hay espacio */
+}
+
+.product-card .card-content p:not(.truncate) {
+    /* Para la categoría y el precio */
+    margin-bottom: 8px;
+}
+
+
+.product-card .card-action {
+    margin-top: auto;
+    /* Empuja las acciones al final de la tarjeta */
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    /* Línea divisoria sutil */
+    padding: 16px !important;
+    /* Asegurar padding para card-action */
+}
+
+/* ... (estilos para image-placeholder que ya te di) ... */
+.image-placeholder {
+    width: 100%;
+    padding-top: 75%;
+    /* Para imágenes 400x300 (300/400 = 0.75) */
+    position: relative;
+    overflow: hidden;
+    background-color: #e0e0e0;
+    border-radius: 4px 4px 0 0;
+}
+
+.image-placeholder img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
