@@ -73,30 +73,57 @@
 
         <div class="col s12 l4" style="margin-top: 20px;">
             <div class="card">
-                <div class="card-content" style="height: 300px;">
-                    <canvas baseChart [data]="chartVentasPorCategoria.data" [options]="chartVentasPorCategoria.options"
-                        [type]="chartVentasPorCategoria.type">
-                    </canvas>
+                <div class="card-content" style="height: 300px; overflow-y: auto;">
+                    <h6 class="center-align">Ventas por Categoría</h6>
+                    <div class="chart-container-css">
+                        <div *ngIf="chartVentasPorCategoriaData.length === 0" class="no-data-message">No hay datos de
+                            ventas por categoría.</div>
+                        <div *ngFor="let item of chartVentasPorCategoriaData" class="chart-item-css">
+                            <span class="chart-label-css">{{ item.label }}</span>
+                            <div class="chart-bar-css" [style.width.%]="item.percentage"
+                                [style.background-color]="item.color">
+                                <span class="chart-value-css">{{ item.value | currency:'MXN':'symbol':'1.2-2' }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="col s12 l4" style="margin-top: 20px;">
             <div class="card">
-                <div class="card-content" style="height: 300px;">
-                    <canvas baseChart [data]="chartVentasPorProducto.data" [options]="chartVentasPorProducto.options"
-                        [type]="chartVentasPorProducto.type">
-                    </canvas>
+                <div class="card-content" style="height: 300px; overflow-y: auto;">
+                    <h6 class="center-align">Top 10 Productos más Vendidos</h6>
+                    <div class="chart-container-css">
+                        <div *ngIf="chartVentasPorProductoData.length === 0" class="no-data-message">No hay datos de
+                            ventas por producto.</div>
+                        <div *ngFor="let item of chartVentasPorProductoData" class="chart-item-css">
+                            <span class="chart-label-css">{{ item.label }}</span>
+                            <div class="chart-bar-css" [style.width.%]="item.percentage"
+                                style="background-color: rgba(54, 162, 235, 0.6);">
+                                <span class="chart-value-css">{{ item.value | currency:'MXN':'symbol':'1.2-2' }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="col s12 l4" style="margin-top: 20px;">
             <div class="card">
-                <div class="card-content" style="height: 300px;">
-                    <canvas baseChart [data]="chartVentasPorMes.data" [options]="chartVentasPorMes.options"
-                        [type]="chartVentasPorMes.type">
-                    </canvas>
+                <div class="card-content" style="height: 300px; overflow-y: auto;">
+                    <h6 class="center-align">Ventas por Mes</h6>
+                    <div class="chart-container-css">
+                        <div *ngIf="chartVentasPorMesData.length === 0" class="no-data-message">No hay datos de ventas
+                            por mes.</div>
+                        <div *ngFor="let item of chartVentasPorMesData" class="chart-item-css">
+                            <span class="chart-label-css">{{ item.label }}</span>
+                            <div class="chart-bar-css" [style.width.%]="item.percentage"
+                                style="background-color: rgba(75, 192, 192, 0.6);">
+                                <span class="chart-value-css">{{ item.value | currency:'MXN':'symbol':'1.2-2' }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -180,3 +207,51 @@
             sucursalSeleccionadaParaReporte }} que coincidan con los filtros aplicados.</p>
     </div>
 </div>
+
+<style>
+    /* Estilos básicos para simular las gráficas */
+    .chart-container-css {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px 0;
+    }
+
+    .chart-item-css {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .chart-label-css {
+        flex-basis: 30%;
+        /* Adjust as needed */
+        font-size: 0.9em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .chart-bar-css {
+        flex-grow: 1;
+        height: 20px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        padding-left: 5px;
+        color: white;
+        font-weight: bold;
+        font-size: 0.8em;
+    }
+
+    .chart-value-css {
+        margin-left: auto;
+        padding-right: 5px;
+    }
+
+    .no-data-message {
+        text-align: center;
+        color: grey;
+        padding: 20px;
+    }
+</style>
