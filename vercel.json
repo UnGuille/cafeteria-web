@@ -1,4 +1,10 @@
 {
-    "buildCommand": "npm install && pnpm run build",
-    "outputDirectory": "dist/cafeteria-web"
+    "buildCommand": "npm install && ng build --configuration=production",
+    "outputDirectory": "dist/cafeteria-web",
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ]
 }
