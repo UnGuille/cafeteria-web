@@ -1,5 +1,5 @@
 {
-    "buildCommand": "npm install --legacy-peer-deps && npm run build",
+    "buildCommand": "pnpm install && pnpm run build",
     "outputDirectory": "dist/cafeteria-web",
     "framework": "angular"
 }
