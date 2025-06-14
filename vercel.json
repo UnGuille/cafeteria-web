@@ -17,5 +17,5 @@
         }
     ],
     "buildCommand": "npm install --legacy-peer-deps && ng build --configuration=production",
-    "outputDirectory": "dist/cafeteria-web/browser"
+    "outputDirectory": "dist/cafeteria-web"
 }
