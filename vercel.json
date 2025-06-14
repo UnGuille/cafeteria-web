@@ -1,21 +1,4 @@
 {
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/index.html"
-        }
-    ],
-    "headers": [
-        {
-            "source": "/(.*)",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "public, max-age=0, must-revalidate"
-                }
-            ]
-        }
-    ],
-    "buildCommand": "npm install --legacy-peer-deps && ng build --configuration=production",
-    "outputDirectory": "dist/cafeteria-web"
+    "buildCommand": "npm install --legacy-peer-deps && npm run build",
+    "outputDirectory": "dist/cafeteria-web/browser/browser"
 }
